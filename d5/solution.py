@@ -5,11 +5,13 @@ with open("input.txt") as f:
 
 
 def get_len(s):
+    s = list(map(ord, s))
     current = 1
     prevs = [0]
-    while current < len(s):
+    length = len(s)
+    while current < length:
         prev = prevs[-1]
-        if abs(ord(s[prev]) - ord(s[current])) == 32:
+        if s[prev] - s[current] == 32 or s[prev] - s[current] == -32:
             current += 1
             prevs.pop()
             if not prevs:
