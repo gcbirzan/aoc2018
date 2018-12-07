@@ -4,7 +4,7 @@ with open("input.txt") as f:
     s = f.read().strip()
 
 
-def get_len(s):
+def react(s):
     s = list(map(ord, s))
     current = 1
     prevs = [0]
@@ -21,20 +21,19 @@ def get_len(s):
             prevs.append(current)
             current += 1
 
-    return len(prevs)
+    return prevs
 
 
 start_t = time.time()
 
-print(get_len(s))
-
-orig_s = s
+orig_s = ''.join(s[x] for x in react(s))
+print(len(orig_s))
 lengths = []
 for x in range(0, 26):
     s = orig_s
     s = s.replace(chr(x + 65), '')
     s = s.replace(chr(x + 97), '')
-    lengths.append(get_len(s))
+    lengths.append(len(react(s)))
 
 print(min(lengths))
 
