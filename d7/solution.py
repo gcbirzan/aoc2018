@@ -16,7 +16,6 @@ with open("input.txt") as f:
 
 print(''.join(nx.lexicographical_topological_sort(graph)))
 
-
 workers_state = {x: (1, None) for x in range(workers)}
 done = set()
 work_times = {node: ord(node) - 64 + extra_time for node in graph.nodes}
@@ -41,7 +40,7 @@ def get_time():
                             nodes_left.remove(node)
                     workers_state[worker] = (0, None)
             else:
-                workers_state[worker] = (state[0] -1, state[1])
+                workers_state[worker] = (state[0] - 1, state[1])
 
         for worker, state in workers_state.items():
             if state[1] is None:
@@ -53,5 +52,6 @@ def get_time():
         if len(done) == len(graph.nodes):
             return second
         second += 1
+
 
 print(get_time())
